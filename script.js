@@ -3,19 +3,6 @@ import Swiper from "https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.esm.brow
 const breakpoint = window.matchMedia("(min-width:768px)");
 let mySwiper;
 
-const breakpointChecker = function () {
-  if (breakpoint.matches === true) {
-    document.querySelector(".swiper").classList.remove("swiper");
-    document
-      .querySelector(".swiper-wrapper")
-      .classList.remove("swiper-wrapper");
-    if (mySwiper !== undefined) mySwiper.destroy(true, true);
-    return;
-  } else if (breakpoint.matches === false) {
-    return enableSwiper();
-  }
-};
-
 const enableSwiper = function () {
   mySwiper = new Swiper(".swiper", {
     loop: true,
@@ -34,6 +21,19 @@ const enableSwiper = function () {
   });
 };
 
+const breakpointChecker = function () {
+  if (breakpoint.matches === true) {
+    // document.querySelector(".swiper").classList.remove("swiper");
+    // document
+    //   .querySelector(".swiper-wrapper")
+    //   .classList.remove("swiper-wrapper");
+    if (mySwiper !== undefined) mySwiper.destroy(true, true);
+    return;
+  } else if (breakpoint.matches === false) {
+    return enableSwiper();
+  }
+};
+
 breakpoint.addListener(breakpointChecker);
 
 breakpointChecker();
@@ -42,7 +42,7 @@ breakpointChecker();
 
 function showMoreOn() {
   let btn = document.querySelector(".btn");
-  let itemsBlock = document.querySelector(".content__wrapper");
+  let itemsBlock = document.querySelector(".brands");
   btn.addEventListener("click", () => {
     itemsBlock.style.height = "auto";
     checkHeightForEnabledShow();
@@ -51,18 +51,18 @@ function showMoreOn() {
 
 function showMoreOff() {
   let btn = document.querySelector(".btn");
-  let itemsBlock = document.querySelector(".content__wrapper");
+  let itemsBlock = document.querySelector(".brands");
   btn.addEventListener("click", () => {
-    itemsBlock.style.height = "185px";
+    itemsBlock.style.height = "160px";
     checkHeightForDisabledShow();
   });
 }
 
 function checkHeightForDisabledShow() {
   let btn = document.querySelector(".btn");
-  let itemsBlock = document.querySelector(".content__wrapper");
+  let itemsBlock = document.querySelector(".brands");
   var wrapperHeight = itemsBlock.offsetHeight;
-  if (wrapperHeight === 185) {
+  if (wrapperHeight === 160) {
     btn.textContent = "Показать все";
     showMoreOn();
   }
@@ -72,9 +72,9 @@ checkHeightForDisabledShow();
 
 function checkHeightForEnabledShow() {
   let btn = document.querySelector(".btn");
-  let itemsBlock = document.querySelector(".content__wrapper");
+  let itemsBlock = document.querySelector(".brands");
   var wrapperHeight = itemsBlock.offsetHeight;
-  if (wrapperHeight !== 185) {
+  if (wrapperHeight !== 160) {
     btn.textContent = "Скрыть все";
     showMoreOff();
   }
