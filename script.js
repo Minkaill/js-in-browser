@@ -10,10 +10,8 @@ const enableSwiper = function () {
       delay: 1500,
     },
     slidesPerView: "auto",
-    centeredSlides: true,
-    a11y: true,
+    spaceBetween: -40,
     keyboardControl: true,
-    grabCursor: true,
     pagination: {
       el: ".swiper-pagination",
     },
